@@ -1,0 +1,73 @@
+version: "3.9"
+services:
+  # configuracion del servidor alpine
+  java_app:
+    #container_name: java_app
+    image: mibedelia:1.0
+    ports:
+      - "8080:8080"
+    build: .
+    links:
+      - mysql
+      - redis
+    environment:
+      - MYSQL_DRIVER=com.mysql.cj.jdbc.Driver
+      - MYSQL_URL=jdbc:mysql://mysql:3306/prototipo2
+      - MYSQL_USER=uMysql
+      - MYSQL_PASSWORD=admin
+      - HIBERNATE_DDL_AUTO=update
+      - HIBERNATE_DIALECT=org.hibernate.dialect.MySQL57Dialect
+      - HIBERNATE_NAMING_STRATEGY=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      - MYSQL_DATABASE=mysql
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_TIMEOUT=1000
+      - REDIS_MAX_ACTIVE=128
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - miredDocker
+
+  mysql:
+    image: mysql:8.2.0
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: prototipo2
+      MYSQL_USER: uMysql
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./databases/mysqldata:/var/lib/mysql
+      - ./logs/mariadb:/var/log/mysql
+    networks:
+      - miredDocker
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: admin
+    depends_on:
+      - mysql
+    networks:
+      - miredDocker
+
+  redis:
+    hostname: redis
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - miredDocker
+
+networks:
+  miredDocker:
+    driver: bridge

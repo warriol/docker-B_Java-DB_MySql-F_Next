@@ -1,0 +1,9 @@
+﻿# frontend
+frontendReactJpaToken/node_modules
+frontendReactJpaToken/.next
+
+#backend
+backendJavaJpaToken/target/
+!backendJavaJpaToken/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/

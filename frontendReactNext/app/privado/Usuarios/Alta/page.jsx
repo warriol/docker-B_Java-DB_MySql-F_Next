@@ -88,7 +88,7 @@ function RegistrarPage() {
           <Sidebar isSidebarToggled={isSidebarToggled} />
         </div>
         <div id="layoutSidenav_content">
-      <RegistroBasico estado={estado} credentials={credentials} handleChange={handleChange} handleSubmit={handleSubmit} />
+        <RegistroBasico estado={estado} credentials={credentials} handleChange={handleChange} handleSubmit={handleSubmit} />
       </div>
       </div>
     </body>

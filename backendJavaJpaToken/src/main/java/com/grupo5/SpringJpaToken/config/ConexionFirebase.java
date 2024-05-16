@@ -11,17 +11,20 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 
 import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @Configuration
 public class ConexionFirebase {
 
-    @Value("${firebase.credentials.path}")
-    private String credentialsPath;
+    @Value("${firebase.credentials.json}")
+    private String credentialsJson;
 
     @Bean
     public Firestore startConnection() throws IOException {
-        FileInputStream serviceAccount = new FileInputStream(credentialsPath);
+        ByteArrayInputStream serviceAccount = new ByteArrayInputStream(credentialsJson.getBytes());
+
+        //FileInputStream serviceAccount = new FileInputStream(credentialsPath);
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))

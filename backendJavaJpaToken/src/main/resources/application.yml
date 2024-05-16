@@ -1,0 +1,35 @@
+# Configuración del DataSource para la base de datos MySQL
+spring:
+  datasource:
+    url: ${MYSQL_URL} # jdbc:mysql://127.0.0.1:3306/prototipo2  # URL de la base de datos
+    username: ${MYSQL_USER} #uMysql  # Nombre de usuario de la base de datos
+    password:  ${MYSQL_PASSWORD} #admin Contraseña de la base de datos
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # Configuración de JPA y Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO} #update # create-drop  # Modo de generación de tablas
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: ${MYSQL_DATABASE} #mysql
+    database-platform: ${HIBERNATE_DIALECT} #org.hibernate.dialect.MySQL8Dialect
+
+# Configuración de Firebase (redirección de credenciales)
+firebase:
+  credentials:
+    path: src/main/resources/firebase-credential.json
+
+# Configuración de SpringDoc OpenAPI y Swagger UI
+springdoc:
+  show-login-endpoint: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+  openapi:
+    security:
+      - bearerAuth: []

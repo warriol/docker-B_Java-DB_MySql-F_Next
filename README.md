@@ -30,7 +30,7 @@ Proyecto en docker que contiene una aplaición backend en java, persistencia en 
 ## crear imagen docker
 ```bash
 ## compilar imagen
-docker build -t asin_docker:1.0 .
+docker build -t mibedelia:1.0 .
 ## correr imagen
 docker-compose up
 # docker-compose up -d
@@ -44,7 +44,7 @@ sleep 10
 ./mvnw clean package -DskipTests
 sleep 20
 
-docker build -t asin_docker:1.0 .
+docker build -t mibedelia:1.0 .
 sleep 20
 docker-compose up
 ```

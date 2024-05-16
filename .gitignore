@@ -7,3 +7,4 @@ backendJavaJpaToken/target/
 !backendJavaJpaToken/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+databases/mysqldata

@@ -16,7 +16,7 @@ services:
       - MYSQL_USER=uMysql
       - MYSQL_PASSWORD=admin
       - HIBERNATE_DDL_AUTO=update
-      - HIBERNATE_DIALECT=org.hibernate.dialect.MySQL57Dialect
+      - HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect #org.hibernate.dialect.MySQL57Dialect
       - HIBERNATE_NAMING_STRATEGY=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       - MYSQL_DATABASE=mysql
       - REDIS_HOST=redis
